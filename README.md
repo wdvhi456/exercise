@@ -1,5 +1,5 @@
 #使用说明：
-训练：直接运行train.py开始训练，在models/configs/for1000.yaml中可修改训练参数    
+  训练：直接运行train.py开始训练，在models/configs/for1000.yaml中可修改训练参数    
            如需加载断点，在train（18行）修改路径加载模型权重文件 权重文件在训练时自动存在checkpoints/my_model目录下
 查看效果：img_predict.py 中（30行）先修改要加载的模型路径 自动输出图片的原图与gt的mse和模型输出和gt的mse
 
