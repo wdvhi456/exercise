@@ -1,0 +1,49 @@
+name: my_model
+dataset:
+  name: for1000
+  path: data/for1000
+  num_workers: 4
+  pin_memory: false
+  preload: true
+  transform:
+    name: trainfor1000
+    image_size: 100
+    flip_prob: 0.5
+  batch_size: 4
+  limit: null
+  start_idx: 0
+model:
+  channels:
+  - 64
+  - 128
+  - 256
+  - 384
+  layers_per_block: 2
+  downblock: ResnetDownsampleBlock2D
+  upblock: ResnetUpsampleBlock2D
+  add_attention: true
+  attention_head_dim: 64
+  save_images: 8
+  ssim_loss: true
+  ssim_loss_weight: 0.05
+  head: sig_dim
+  checkpoint: checkpoints/mdn-fsd-mixhq-6shot/mdn-fsd-mixhq-6shot.ckpt
+optimizer:
+  name: adam
+  lr: 1.0e-07
+  weight_decay: 0
+  betas:
+  - 0.9
+  - 0.99
+  scheduler:
+    name: cosine
+    frequency: 1
+loss:
+  name: mse
+logger:
+  checkpoint_dir: checkpoints
+  save_top_k: 1
+device: gpu
+iter: 5
+eval_freq: 40
+seed: 42
